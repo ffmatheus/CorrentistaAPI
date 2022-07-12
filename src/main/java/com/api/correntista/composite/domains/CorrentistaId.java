@@ -9,6 +9,7 @@ public class CorrentistaId implements Serializable{
 	 private Integer conta;
 
     public CorrentistaId() {
+    	
     }
 
     public CorrentistaId(Integer ag, Integer conta) {

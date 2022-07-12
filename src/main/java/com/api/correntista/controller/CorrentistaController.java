@@ -6,11 +6,10 @@ import com.api.correntista.model.Correntista;
 import com.api.correntista.repository.CorrentistaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,7 +19,7 @@ public class CorrentistaController {
 	@Autowired
 	private CorrentistaRepository correntistaRepository;
 	
-	@GetMapping(path="/inicio")
+	@RequestMapping(value="/api/correntista", method=RequestMethod.GET)
 	public String inicio() {
 		return "Bem vindo a API de correntistas";
 	}
@@ -30,9 +29,17 @@ public class CorrentistaController {
 		return correntistaRepository.findAll();
 	}
 	
+	@RequestMapping(value="/{ag}/{conta}", method=RequestMethod.GET)
+	public Correntista filterCorrentistas(@PathVariable int ag, @PathVariable int conta) {
+		return correntistaRepository.findAllByAgConta(ag, conta);
+	}
+	
 	@RequestMapping(value="/create", method=RequestMethod.POST)
-	public @ResponseBody Correntista createCorrenstista(@RequestBody Correntista correntista) {
-		return correntistaRepository.save(correntista);
+	public Correntista createCorrenstista(@RequestBody Correntista correntista) {
+	
+		correntistaRepository.save(correntista);
+	
+		return correntista;
 	}
 
 }
