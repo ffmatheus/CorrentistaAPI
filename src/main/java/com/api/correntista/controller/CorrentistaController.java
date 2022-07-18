@@ -41,5 +41,22 @@ public class CorrentistaController {
 	
 		return correntista;
 	}
+	
+	
+	@RequestMapping(value="/update", method=RequestMethod.PUT)
+	public Correntista updateCorrenstista(@RequestBody Correntista correntista) {
+
+		correntistaRepository.save(correntista);
+		
+		return correntista;
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
+	public Correntista deleteCorrentista(@RequestBody Correntista correntista) {
+	
+		correntistaRepository.delete(correntista);
+	
+		return correntista;
+	}
 
 }

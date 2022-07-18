@@ -21,8 +21,8 @@ public interface CorrentistaRepository extends CrudRepository<Correntista, Corre
 	//Pesquisa por ag/conta 
 	@Query(value = "SELECT * FROM correntista.correntista where ag = ?1 and conta = ?2", nativeQuery=true)
 	Correntista findAllByAgConta(int ag, int conta);
-	
-	//Salva correntista
+		
+	//Salva/Atualiza correntista
 	<CorrentistaMod extends Correntista> CorrentistaMod save(Correntista correntista);
 	
 }
